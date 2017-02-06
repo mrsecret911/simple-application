@@ -38,8 +38,6 @@ app.post('/check_token', function (req, res) {
 	} else { 
 		return res.status(401).send({success: false, msg: 'Authentication failed.'});
 	}
-
-	//console.log();
 })
 
 app.listen(3100, function () {
