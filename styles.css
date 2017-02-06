@@ -1,0 +1,16 @@
+.btn {
+	display: block;
+	margin: 100px auto;
+	padding: 20px 40px;
+	animation-name: slideInUp;
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+@keyframes slideInUp {
+	0% {
+		transform: translateY(50%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+} 

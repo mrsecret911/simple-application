@@ -1,0 +1,24 @@
+.status-massage {
+	text-align: center;
+    padding: 60px 10px;
+    font-size: 22px;
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    background: #bbb;
+    color: #fff;
+    z-index: 1;
+}
+.close {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+}
+.status-success {
+	background: #43ac6a;
+}
+.status-danger {
+	background: #f04124;
+}
