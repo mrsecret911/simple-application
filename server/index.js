@@ -1,18 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
-var morgan = require('morgan');
 var passport = require('passport');
 var jwt = require('jwt-simple')
-var payload = { foo: 'bar' };
+
 var secret = 'xxx';
 
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-app.use(morgan('dev'));
-
 app.use(passport.initialize());
 
 
@@ -24,18 +20,21 @@ app.use(function (req, res, next) {
 });
 
 app.post('/create_token', function (req, res) {
-	var token = jwt.encode(payload, secret);
-	var date = new Date();
-	res.json({success: true, token: token, date: new Date().getTime() / 1000});
+	var token = jwt.encode({
+	foo: 'bar',
+	exp: Date.now()
+	}, secret);
+
+	res.json({success: true, token: token});
 })
 
 app.post('/check_token', function (req, res) {
 	var req = req.body;
 	var token = JSON.parse(req.token);
-	
-	if(token && new Date().getTime() / 1000 - req.date < 10) {
+	var decoded = jwt.decode(token, secret);
+	if((Date.now() - decoded.exp) / 1000 < 30) {
 		res.json({success: true});
-	} else { 
+	} else {
 		return res.status(401).send({success: false, msg: 'Authentication failed.'});
 	}
 })

@@ -27,7 +27,6 @@ export class LoginPageComponent {
 			.createToken(param)
 			.then(res => {
 				localStorage.setItem('token', JSON.stringify(res.token));
-				localStorage.setItem('date', JSON.stringify(res.date));
 				this.router.navigate(['/dashboard']);
 			})
 	}
